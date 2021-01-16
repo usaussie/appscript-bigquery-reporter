@@ -7,7 +7,7 @@
  */
 
 /**
- * Only run this once to create the intitial tables to hold the CSV data.
+ * Only run this once to create the intitial tables to hold the collected data.
  */
 
 function create_tables_one_time() {
