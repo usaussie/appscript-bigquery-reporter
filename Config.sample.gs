@@ -21,10 +21,10 @@ var MAIN_SHEET_TAB_NAME = "Sheet1";
 function project_dataset_list() {
 
   return [
-    ['gcp-project-id-a', 'table_one'],
-    ['gcp-project-id-a', 'table_two'],
-    ['gcp-project-id-b', 'table_one'],
-    ['gcp-project-id-c', 'table_one']
+    ['gcp-project-id-a', 'dataset_one'],
+    ['gcp-project-id-a', 'dataset_two'],
+    ['gcp-project-id-b', 'dataset_one'],
+    ['gcp-project-id-c', 'dataset_one']
   ];
 
 }
