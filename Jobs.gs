@@ -71,3 +71,14 @@ function job_get_bq_stats() {
   ss.getRange(ss.getLastRow() + 1, 1, stats_array.length, stats_array[0].length).setValues(stats_array);
 
 }
+
+/*
+*
+* ONLY RUN THIS ONCE TO SET THE HEADER ROWS FOR THE GOOGLE SHEETS
+*/
+function set_sheet_headers() {
+  
+  var sheet = SpreadsheetApp.openByUrl(SHEET_URL).getSheetByName(MAIN_SHEET_TAB_NAME);
+  sheet.appendRow(["timestamp","project","dataset","table", "size_bytes", "row_count"]);
+  
+}
