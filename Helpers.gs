@@ -94,17 +94,6 @@ function runQuery(projectId, my_query) {
   return data;
 }
 
-/*
-*
-* ONLY RUN THIS ONCE TO SET THE HEADER ROWS FOR THE GOOGLE SHEETS
-*/
-function set_sheet_headers() {
-  
-  var sheet = SpreadsheetApp.openByUrl(SHEET_URL).getSheetByName(MAIN_SHEET_TAB_NAME);
-  sheet.appendRow(["timestamp","project","dataset","table", "size_bytes", "row_count"]);
-  
-}
-
 /**
  * Returns an array used to create the BQ tables needed.
  * References the table functions you've set up below.
