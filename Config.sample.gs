@@ -18,14 +18,14 @@ const BQ_TABLE_ID = 'your-gcp-table-id';
 var SHEET_URL = "https://docs.google.com/spreadsheets/d/your-google-sheet/edit";
 var MAIN_SHEET_TAB_NAME = "Sheet1";
 
-function project_dataset_list() {
+// array of project IDs that you want to grab all the datasets for 
+// (previously required you to put in dataset IDs as well, but now it's automatic)
+function project_list() {
 
   return [
-    ['gcp-project-id-a', 'dataset_one'],
-    ['gcp-project-id-a', 'dataset_two'],
-    ['gcp-project-id-b', 'dataset_one'],
-    ['gcp-project-id-c', 'dataset_one']
-  ];
+    ['uncg-its-analyticsexpirements'],
+    ['uncg-its-analyticsdatalake']
+  ]; 
 
 }
 
