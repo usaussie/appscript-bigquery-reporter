@@ -1,4 +1,6 @@
-function constructTableJson(thisTableData, thisProjectId, thisDatasetId) {
+/**
+ * Only run this once to create the intitial tables to hold the collected data.
+ */function constructTableJson(thisTableData, thisProjectId, thisDatasetId) {
 
   return{
       tableReference: {
@@ -128,4 +130,53 @@ function table_bq_stats()
   
   return table;
   
+}
+
+function get_all_projects() {
+
+  var data = BigQuery.Projects.list();
+
+  return data;
+
+}
+
+function get_all_data_sets_for_project(project_id) {
+
+  var data = BigQuery.Datasets.list(project_id);
+
+  return data;
+
+}
+
+function convert_data_set_request_to_id_array(request_data) {
+
+  if (request_data.datasets) {
+
+    var data = new Array();
+    for (var i = 0; i < request_data.datasets.length; i++) {
+      
+      if(request_data.datasets[i].datasetReference) {
+        
+        var this_array = [
+          request_data.datasets[i].datasetReference.projectId,
+          request_data.datasets[i].datasetReference.datasetId
+        ];
+
+        data.push(this_array);
+
+      }
+      
+    }
+ 
+  } else {
+    
+    var data = [];
+    
+  }
+
+  //console.log(data);
+
+  return data;
+
+
 }
