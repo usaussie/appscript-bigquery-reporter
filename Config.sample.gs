@@ -23,8 +23,8 @@ var MAIN_SHEET_TAB_NAME = "Sheet1";
 function project_list() {
 
   return [
-    ['uncg-its-analyticsexpirements'],
-    ['uncg-its-analyticsdatalake']
+    ['gcp-project-id-one'],
+    ['gcp-project-id-two']
   ]; 
 
 }
