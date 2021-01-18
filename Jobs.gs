@@ -32,14 +32,29 @@ function job_get_bq_stats() {
 
   var this_timestamp = Utilities.formatDate(new Date(), "UTC", "yyyy-MM-dd'T'HH:mm:ss'Z'");
   
-  var projects = project_dataset_list();
+  //get projects
+  var projects = project_list();
+
+  // convert projects to project/dataset array
+  var dataset_array = [];
+  for (let i = 0; i < projects.length; i++) {
+    var this_dataset_data = get_all_data_sets_for_project(projects[i]);
+    var converted_data = convert_data_set_request_to_id_array(this_dataset_data);
+    
+    for (let j = 0; j < converted_data.length; j++) {
+      dataset_array.push(converted_data[j]);
+    }
+  }
+  
+  // console.log(dataset_array);
+  // return;
 
   // loop the outer array
   var stats_array = []
-  for (let i = 0; i < projects.length; i++) {
+  for (let i = 0; i < dataset_array.length; i++) {
       
-      var my_query = construct_select_query(projects[i][1]);
-      var query_data = runQuery(projects[i][0], my_query);
+      var my_query = construct_select_query(dataset_array[i][1]);
+      var query_data = runQuery(dataset_array[i][0], my_query);
 
       // if there are results, add the extra info (timestamp, project etc) ready for storage/insert into our sheet/bq table
       if(query_data.length > 0) {
@@ -48,8 +63,8 @@ function job_get_bq_stats() {
 
           stats_array.push([
             this_timestamp,
-            projects[i][0],
-            projects[i][1],
+            dataset_array[i][0],
+            dataset_array[i][1],
             query_data[q][0],
             query_data[q][1],
             query_data[q][2],
