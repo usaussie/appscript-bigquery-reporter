@@ -56,6 +56,7 @@ function runQuery(projectId, my_query) {
     query: my_query,
     useLegacySql: false
   };
+  Logger.log('MyQuery: ' + JSON.stringify(request) + ' ---- Project ID: ' + projectId);
   var queryResults = BigQuery.Jobs.query(request, projectId);
   var jobId = queryResults.jobReference.jobId;
 
