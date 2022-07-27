@@ -31,7 +31,7 @@ function construct_select_query(dataset) {
 
 function construct_insert_query(stats_array) {
 
-    var query_prefix = "INSERT " + BQ_DATASET_ID + "." + BQ_TABLE_ID + " (timestamp, project, dataset, table, size_bytes, row_count) VALUES ";
+    var query_prefix = "INSERT \`" + BQ_DATASET_ID + "." + BQ_TABLE_ID + "\` (timestamp, project, dataset, table, size_bytes, row_count) VALUES ";
 
     var values_queries = [];
     for (var i = 1, numColumns = stats_array.length; i < numColumns; i++) {
