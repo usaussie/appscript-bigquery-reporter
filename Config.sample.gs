@@ -14,6 +14,10 @@ const BQ_PROJECT_ID = 'your-gcp-project-id';
 const BQ_DATASET_ID = 'your-gcp-dataset-id';
 // Table ID to store the collected stats
 const BQ_TABLE_ID = 'your-gcp-table-id';
+// defining how many rows the insert statement uploads 
+const insert_chunk_size = 100;
+// Use Spreadsheet for stats
+var USE_SPREADSHEET = false;
 // for storing the metrics in google sheets too
 var SHEET_URL = "https://docs.google.com/spreadsheets/d/your-google-sheet/edit";
 var MAIN_SHEET_TAB_NAME = "Sheet1";
