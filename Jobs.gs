@@ -76,14 +76,20 @@ function job_get_bq_stats() {
       
   }
 
-  // write to bigquery
-  var insert_query = construct_insert_query(stats_array);
-  runQuery(BQ_PROJECT_ID, insert_query);
+   // chunk the insert statement so larger monitoring projects are not limited by insert statement.
+  for (let i = 0; i < stats_array.length; i += insert_chunk_size) {
+    const stats_array_chunk = stats_array.slice(i, i + insert_chunk_size);
+    // write to bigquery
+    var insert_query = construct_insert_query(stats_array_chunk);
+    runQuery(BQ_PROJECT_ID, insert_query);
 
-  //write to google sheet now
-  // write collected rows arrays to the sheet in one operation (quicker than individual appends)
-  var ss = SpreadsheetApp.openByUrl(SHEET_URL).getSheetByName(MAIN_SHEET_TAB_NAME);
-  ss.getRange(ss.getLastRow() + 1, 1, stats_array.length, stats_array[0].length).setValues(stats_array);
+    if(USE_SPREADSHEET){
+      //write to google sheet now
+      // write collected rows arrays to the sheet in one operation (quicker than individual appends)
+      var ss = SpreadsheetApp.openByUrl(SHEET_URL).getSheetByName(MAIN_SHEET_TAB_NAME);
+      ss.getRange(ss.getLastRow() + 1, 1, stats_array_chunk.length, stats_array_chunk[0].length).setValues(stats_array_chunk);
+    }
+  }
 
 }
 
